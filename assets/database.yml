@@ -1,0 +1,30 @@
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: canvas_test
+  host: localhost
+  username: postgres
+  timeout: 5000
+
+main: &main
+  adapter: postgresql
+  encoding: utf8
+  timeout: 5000
+  host: canvas-vanilla.ce0n38lks20v.us-east-1.rds.amazonaws.com
+  username: "vanillamaster"
+  password: "q1w2e3r4t5y6u7i8"
+
+jobs: &jobs
+  adapter: postgresql
+  encoding: utf8
+  timeout: 5000
+  host: canvas-vanilla-dj.ce0n38lks20v.us-east-1.rds.amazonaws.com
+  username: "vanillamaster"
+  password: "q1w2e3r4t5y6u7i8"
+
+development:
+  <<: *main
+  database: vanilla
+  queue:
+    <<: *jobs
+    database: vanilla_dj
